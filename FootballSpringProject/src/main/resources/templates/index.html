@@ -6,5 +6,10 @@
 </head>
 <body>
 	<h1 th:text="'Welcome to ' + ${message}"></h1>
+	
+	<form action="#" th:action="@{/redirect}">
+        <input type="submit" value="Teams"/>
+    </form>
+
 </body>
 </html>

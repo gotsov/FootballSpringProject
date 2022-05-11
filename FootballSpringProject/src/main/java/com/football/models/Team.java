@@ -17,13 +17,23 @@ public class Team {
 	@Column(nullable = false, length = 100)
 	String name;
 	@Column(nullable = false, length = 100)
+	String city;
+	@Column(nullable = false, length = 100)
 	String country;
+	@Column(nullable = true)
+	int yearFounded;
 	
-	public Team(int id, String name, String country) {
+	public Team() {
+		
+	}
+	
+	public Team(int id, String name, String city, String country, int yearFounded) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.city = city;
 		this.country = country;
+		this.yearFounded = yearFounded;
 	}
 	
 	public int getId() {
@@ -44,5 +54,22 @@ public class Team {
 	public void setCountry(String country) {
 		this.country = country;
 	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public int getYearFounded() {
+		return yearFounded;
+	}
+
+	public void setYearFounded(int yearFounded) {
+		this.yearFounded = yearFounded;
+	}
+	
 
 }
