@@ -1,5 +1,7 @@
 package com.football.controllers;
 
+import java.security.Principal;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +21,11 @@ public class HomeController {
 		return "index";
 	}
 	
+//	@GetMapping("/")
+//    String index(Principal principal) {
+//        return principal != null ? "home/homeSignedIn" : "home/homeNotSignedIn";
+//    }
+	
 	@GetMapping("/redirectToTeams")
     public RedirectView redirectToTeams(
       RedirectAttributes attributes) {
@@ -30,8 +37,12 @@ public class HomeController {
 	@GetMapping("/redirectToUsers")
     public RedirectView redirectToUsers(
       RedirectAttributes attributes) {
-//        attributes.addFlashAttribute("flashAttribute", "redirectWithRedirectView");
-//        attributes.addAttribute("attribute", "redirectWithRedirectView");
         return new RedirectView("users");
+    }
+	
+	@GetMapping("/redirectToLogin")
+    public RedirectView redirectToLogin(
+      RedirectAttributes attributes) {
+        return new RedirectView("login");
     }
 }

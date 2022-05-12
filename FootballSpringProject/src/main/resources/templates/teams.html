@@ -1,34 +1,48 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Teams</title>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
 </head>
 <body>
-	<h1 th:text="'Your teams'"></h1>
-	
-	<table border="5px">
-	    <thead>
-	        <tr>
-	            <th> Name </th>
-	            <th> City </th>
-	            <th> Country </th>
-	            <th> Year Founded </th>
-	        </tr>
-	    </thead>
-	    <tbody>
+
+<table>
+  <thead>
+	    <tr>
+	        <th> Name </th>
+	        <th> City </th>
+	        <th> Country </th>
+	        <th> Year Founded </th>
+	    </tr>
+   </thead>
+   <tbody>
 		<tr th:if="${teams.empty}">
-	            <td colspan="2"> No Teams Available </td>
-	        </tr>
-	        <tr th:each="team : ${teams}">
-	            <td><span th:text="${team.name}"> Name </span></td>
-	            <td><span th:text="${team.city}"> City </span></td>
-	            <td><span th:text="${team.country}"> Country </span></td>
-	            <td><span th:text="${team.yearFounded}"> Year Founded </span></td>
-	        </tr>
-	    </tbody>
-	</table>
-	
-	
+	        <td colspan="2"> No Teams Available </td>
+	    </tr>
+	       <tr th:each="team : ${teams}">
+	           <td><span th:text="${team.name}"> Name </span></td>
+	           <td><span th:text="${team.city}"> City </span></td>
+	           <td><span th:text="${team.country}"> Country </span></td>
+	           <td><span th:text="${team.yearFounded}"> Year Founded </span></td>
+	       </tr>
+    </tbody>
+</table>
+
 </body>
 </html>
+
