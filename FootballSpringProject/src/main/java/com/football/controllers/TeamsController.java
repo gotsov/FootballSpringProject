@@ -17,7 +17,7 @@ public class TeamsController {
 
 	@GetMapping
 	public String getTeams(Model model) {
-		model.addAttribute("teams", teamsSerivce.findAll());
+		model.addAttribute("teams", teamsSerivce.getAllTeams());
 		return "teams";
 	}
 }

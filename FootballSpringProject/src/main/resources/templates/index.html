@@ -143,55 +143,8 @@ span.psw {
 <body>
 	<h1 th:text="'Welcome to ' + ${message}" style="display: inline-block;"></h1>
 	
-	<button onclick="document.getElementById('id01').style.display='block'" style="width:auto; float:right;">Login</button>
-	<button onclick="document.getElementById('id02').style.display='block'" style="width:auto; float:right;">Register</button>
-
-	<div id="id01" class="modal">
-	  
-	  <form class="modal-content animate" action="/action_page.php" method="post">
-	    <div class="imgcontainer">
-	      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-	    </div>
-	
-	    <div class="container">
-	      <label for="uname"><b>Username</b></label>
-	      <input type="text" placeholder="Enter Username" name="uname" required>
-	
-	      <label for="psw"><b>Password</b></label>
-	      <input type="password" placeholder="Enter Password" name="psw" required>
-	        
-	      <button type="submit">Login</button>
-	      <label>
-	        <input type="checkbox" checked="checked" name="remember"> Remember me
-	      </label>
-	    </div>
-	  </form>
-	</div>
-
-	<div id="id02" class="modalRegister">
-		<form class="modal-content animate" action="/action_page.php" method="post">
-		    <div class="imgcontainer">
-	     		<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
-	    	</div>
-	    
-		  <div class="container">
-		    <h1>Register</h1>
-		    <p>Please fill in this form to create an account.</p>
-
-		    <label for="email"><b>Email</b></label>
-		    <input type="text" placeholder="Enter Email" name="email" id="email" required>
-		    
-		    <label for="username"><b>Username</b></label>
-		    <input type="text" placeholder="Enter Username" name="username" id="username" required>
-		
-		    <label for="psw"><b>Password</b></label>
-		    <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
-
-		    <button type="submit" class="registerbtn">Register</button>
-		  </div>
-	</form>
-	</div>
-    
+	<button onclick="window.location.href='/login'" style="width:auto; float:right;">Login</button>
+	<button onclick="window.location.href='/registerUser'" style="width:auto; float:right;">Register</button>
     
 	<div>
 	    <button onclick="window.location.href='/teams'" style="width:auto;">All Teams</button>

@@ -17,7 +17,7 @@ public class TeamsService implements ITeamsService{
     }
 	
 	@Override
-	public List<Team> findAll() {
+	public List<Team> getAllTeams() {
 		return (List<Team>) repository.findAll();
 	}
 
