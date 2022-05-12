@@ -17,17 +17,33 @@ td, th {
 tr:nth-child(even) {
   background-color: #dddddd;
 }
+
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.button1 {padding: 10px 28px;}
+
 </style>
 </head>
 <body>
 
 <table>
-  <thead>
+   <thead>
 	    <tr>
 	        <th> Name </th>
 	        <th> City </th>
 	        <th> Country </th>
 	        <th> Year Founded </th>
+	        <th> Actions </th>
 	    </tr>
    </thead>
    <tbody>
@@ -39,6 +55,7 @@ tr:nth-child(even) {
 	           <td><span th:text="${team.city}"> City </span></td>
 	           <td><span th:text="${team.country}"> Country </span></td>
 	           <td><span th:text="${team.yearFounded}"> Year Founded </span></td>
+	           <td><button class="button button1"> Edit </button></td>
 	       </tr>
     </tbody>
 </table>

@@ -23,10 +23,17 @@ public class HomeController {
 	
 	@Autowired
 	private UsersService userService;
+	private User loggedUser;
 	
 	@GetMapping("/")
 	public String getHomePage(Model model) {
-		model.addAttribute("message", "Football Spring");
+		if(loggedUser != null) {
+			model.addAttribute("loggedUser", loggedUser.getUsername());
+		}
+		else {
+			model.addAttribute("loggedUser", "anonymous! Join us!");
+		}
+		
 		return "index";
 	}
 	
@@ -53,8 +60,10 @@ public class HomeController {
 	@PostMapping("/validateLogin")
 	public String validateLogin(@ModelAttribute("user") User user) {
 		
-		if(userService.userExists(user))
+		if(userService.userExists(user)) {
+			loggedUser = user;
 			return "redirect:/";
+		}
 		else
 			return "login";
 	}
