@@ -1,10 +1,15 @@
 package com.football.models;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -23,17 +28,25 @@ public class Team {
 	@Column(nullable = true)
 	int yearFounded;
 	
+	@ManyToMany
+	@JoinTable(
+			  name = "user_team", 
+			  joinColumns = @JoinColumn(name = "user_id"), 
+			  inverseJoinColumns = @JoinColumn(name = "team_id"))
+	Set<User> users;
+	
 	public Team() {
 		
 	}
 	
-	public Team(int id, String name, String city, String country, int yearFounded) {
+	public Team(int id, String name, String city, String country, int yearFounded, Set<User> users) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.city = city;
 		this.country = country;
 		this.yearFounded = yearFounded;
+		this.users = users;
 	}
 	
 	public int getId() {
@@ -70,6 +83,12 @@ public class Team {
 	public void setYearFounded(int yearFounded) {
 		this.yearFounded = yearFounded;
 	}
-	
 
+	public Set<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(Set<User> users) {
+		this.users = users;
+	}
 }

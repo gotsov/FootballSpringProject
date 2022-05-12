@@ -7,8 +7,12 @@
 <body>
 	<h1 th:text="'Welcome to ' + ${message}"></h1>
 	
-	<form action="#" th:action="@{/redirect}">
+	<form action="#" th:action="@{/redirectToTeams}">
         <input type="submit" value="Teams"/>
+    </form>
+    
+    <form action="#" th:action="@{/redirectToUsers}">
+        <input type="submit" value="Users"/>
     </form>
 
 </body>

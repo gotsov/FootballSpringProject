@@ -13,17 +13,25 @@ import org.springframework.web.servlet.view.RedirectView;
 @RequestMapping("/")
 public class HomeController {
 	
-	@RequestMapping("/")
+	@GetMapping("/")
 	public String getHomePage(Model model) {
 		model.addAttribute("message", "Football Spring");
 		return "index";
 	}
 	
-	@GetMapping("/redirect")
-    public RedirectView redirect(
+	@GetMapping("/redirectToTeams")
+    public RedirectView redirectToTeams(
       RedirectAttributes attributes) {
 //        attributes.addFlashAttribute("flashAttribute", "redirectWithRedirectView");
 //        attributes.addAttribute("attribute", "redirectWithRedirectView");
         return new RedirectView("teams");
+    }
+	
+	@GetMapping("/redirectToUsers")
+    public RedirectView redirectToUsers(
+      RedirectAttributes attributes) {
+//        attributes.addFlashAttribute("flashAttribute", "redirectWithRedirectView");
+//        attributes.addAttribute("attribute", "redirectWithRedirectView");
+        return new RedirectView("users");
     }
 }

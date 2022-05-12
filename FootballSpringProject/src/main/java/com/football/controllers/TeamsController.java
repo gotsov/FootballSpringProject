@@ -15,7 +15,7 @@ public class TeamsController {
 	@Autowired
 	private TeamsService teamsSerivce;
 
-	@RequestMapping
+	@GetMapping
 	public String getTeams(Model model) {
 		model.addAttribute("teams", teamsSerivce.findAll());
 		return "teams";
