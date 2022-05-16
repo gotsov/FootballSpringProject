@@ -21,4 +21,9 @@ public class TeamsService implements ITeamsService{
 		return (List<Team>) repository.findAll();
 	}
 
+	@Override
+	public void addTeam(Team team) {
+		repository.save(team);
+	}
+
 }

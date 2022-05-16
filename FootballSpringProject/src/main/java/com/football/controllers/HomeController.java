@@ -31,7 +31,7 @@ public class HomeController {
 			model.addAttribute("loggedUser", loggedUser.getUsername());
 		}
 		else {
-			model.addAttribute("loggedUser", "anonymous! Join us!");
+			model.addAttribute("loggedUser", "Football Spring");
 		}
 		
 		return "index";
@@ -47,6 +47,7 @@ public class HomeController {
 	@PostMapping("/saveUser")
 	public String saveUser(@ModelAttribute("user") User user) {
 		userService.addUser(user);
+		loggedUser = user;
 		return "redirect:/";
 	}
 	
@@ -67,24 +68,4 @@ public class HomeController {
 		else
 			return "login";
 	}
-	
-	@GetMapping("/redirectToTeams")
-    public RedirectView redirectToTeams(
-      RedirectAttributes attributes) {
-//        attributes.addFlashAttribute("flashAttribute", "redirectWithRedirectView");
-//        attributes.addAttribute("attribute", "redirectWithRedirectView");
-        return new RedirectView("teams");
-    }
-	
-	@GetMapping("/redirectToUsers")
-    public RedirectView redirectToUsers(
-      RedirectAttributes attributes) {
-        return new RedirectView("users");
-    }
-	
-	@GetMapping("/redirectToLogin")
-    public RedirectView redirectToLogin(
-      RedirectAttributes attributes) {
-        return new RedirectView("login");
-    }
 }

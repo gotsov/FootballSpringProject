@@ -30,11 +30,35 @@ tr:nth-child(even) {
   cursor: pointer;
 }
 
-.button1 {padding: 10px 28px;}
+.button1 {
+padding: 10px 28px;
+}
+
+.container {
+  padding: 16px;
+}
 
 </style>
 </head>
 <body>
+
+<div class="container">
+		<form th:action="@{/teams}" th:object="${team}" method="POST">
+		    <label for="name"><b>Name</b></label>
+		    <input th:field="*{name}" type="text" placeholder="Enter Name" name="name" id="name" required>
+		    
+		    <label for="city"><b>City</b></label>
+		    <input th:field="*{city}" type="text" placeholder="Enter City" name="city" id="city" required>
+		    
+		    <label for="country"><b>Country</b></label>
+		    <input th:field="*{country}" type="text" placeholder="Enter Country" name="country" id="country" required>
+
+			<label for="yearFounded"><b>Year Founded</b></label>
+		    <input th:field="*{yearFounded}" type="number" placeholder="Enter Year Founded" name="yearFounded" id="yearFounded" required>
+		    
+		    <button type="submit" class="button button1">Add Team</button>
+	    </form>
+</div>
 
 <table>
    <thead>

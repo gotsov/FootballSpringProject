@@ -6,4 +6,5 @@ import com.football.models.Team;
 
 public interface ITeamsService {
 	List<Team> getAllTeams();
+	void addTeam(Team team);
 }
