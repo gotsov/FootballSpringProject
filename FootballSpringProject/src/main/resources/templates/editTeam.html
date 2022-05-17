@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
+<meta charset="UTF-8">
 <style>
 
 label{
@@ -15,22 +16,6 @@ input[type=text] {
   box-sizing: border-box;
 }
 
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
-
 .button {
   background-color: #4CAF50; /* Green */
   border: none;
@@ -39,7 +24,7 @@ tr:nth-child(even) {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin-left: 30px;
+  margin-left: 20px;
   cursor: pointer;
 }
 
@@ -47,17 +32,24 @@ tr:nth-child(even) {
 padding: 10px 28px;
 }
 
+.button2 {
+background-color: #EB5353;
+padding: 10px 28px;
+}
+
 .container {
   padding: 16px;
-  margin-left: 100px;
+}
+
+.form{
+display: inline;
 }
 
 </style>
 </head>
 <body>
-
-<div class="container">
-		<form th:action="@{/addTeam}" th:object="${team}" method="POST">
+	<div class="container">
+		<form th:action="@{/addTeam}" th:object="${team}" method="POST" class="form">
 			<input type="hidden" name="id" th:field="*{id}">
 			
 		    <label for="name"><b>Name</b></label>
@@ -68,41 +60,16 @@ padding: 10px 28px;
 		    
 		    <label for="country"><b>Country</b></label>
 		    <input th:field="*{country}" type="text" placeholder="Enter Country" name="country" id="country" required>
-
+	
 			<label for="yearFounded"><b>Year Founded</b></label>
 		    <input th:field="*{yearFounded}" type="text" placeholder="Enter Year Founded" name="yearFounded" id="yearFounded" required>
 		    
-		    <button type="submit" class="button button1">Add Team</button>
+		    <button type="submit" class="button button1">Save Changes</button>
 	    </form>
-</div>
-
-<div>
-	<table>
-	   <thead>
-		    <tr>
-		        <th> Name </th>
-		        <th> City </th>
-		        <th> Country </th>
-		        <th> Year Founded </th>
-		        <th> Edit/Delete </th>
-		    </tr>
-	   </thead>
-	   <tbody>
-			<tr th:if="${teams.empty}">
-		        <td colspan="2"> No Teams Available </td>
-		    </tr>
-		       <tr th:each="team : ${teams}">
-		           <td><span th:text="${team.name}"> Name </span></td>
-		           <td><span th:text="${team.city}"> City </span></td>
-		           <td><span th:text="${team.country}"> Country </span></td>
-		           <td><span th:text="${team.yearFounded}"> Year Founded </span></td>
-		           <td>
-		           		<a th:href="@{/teams/editTeam/{id} (id=${team.id})}" class="button button1"> Edit/Delete </a>
-		           </td>
-		       </tr>
-	    </tbody>
-	</table>
-</div>
+	    <form th:action="@{/deleteTeam}" th:object="${team}" method="POST" class="form">
+		    <input type="hidden" name="id" th:field="*{id}">
+		    <button onclick="if (!(confirm('You are going to delete this team.'))) return false" type="submit" class="button button2">Delete team</button>
+	    </form>
+	</div>
 </body>
 </html>
-

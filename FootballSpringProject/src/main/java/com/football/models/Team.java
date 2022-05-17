@@ -1,5 +1,6 @@
 package com.football.models;
 
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -90,5 +91,24 @@ public class Team {
 
 	public void setUsers(Set<User> users) {
 		this.users = users;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(city, country, id, name, users, yearFounded);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Team other = (Team) obj;
+		return Objects.equals(city, other.city) && Objects.equals(country, other.country) && id == other.id
+				&& Objects.equals(name, other.name) && Objects.equals(users, other.users)
+				&& yearFounded == other.yearFounded;
 	}
 }
