@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.football.models.Team;
 import com.football.models.User;
 import com.football.repositories.UsersRepository;
 
@@ -30,6 +31,13 @@ public class UsersService implements IUsersService{
 	public Boolean userExists(User user) {
 		User loginUser = userRepository.findByUsername(user.getUsername());
 		
-		return (loginUser != null && loginUser.getPassword().equals(loginUser.getPassword())) ? true : false;
+		return (loginUser != null && user.getPassword().equals(loginUser.getPassword())) ? true : false;
+	}
+
+	@Override
+	public User getUserByUsername(String username) {
+		User user = userRepository.findByUsername(username);
+		
+		return user;
 	}
 }

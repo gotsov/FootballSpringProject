@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.football.models.Team;
 import com.football.models.User;
 import com.football.services.UsersService;
 
@@ -23,15 +25,15 @@ public class HomeController {
 	
 	@Autowired
 	private UsersService userService;
-	private User loggedUser;
+	private User loggedUser = new User();
 	
 	@GetMapping("/")
 	public String getHomePage(Model model) {
 		if(loggedUser != null) {
-			model.addAttribute("loggedUser", loggedUser.getUsername());
+			model.addAttribute("user", loggedUser);
 		}
 		else {
-			model.addAttribute("loggedUser", "Football Spring");
+			model.addAttribute("isUserLogged", true);
 		}
 		
 		return "index";
@@ -59,13 +61,28 @@ public class HomeController {
 	}
 	
 	@PostMapping("/validateLogin")
-	public String validateLogin(@ModelAttribute("user") User user) {
+	public String validateLogin(@ModelAttribute("user") User user, Model model) {
 		
 		if(userService.userExists(user)) {
-			loggedUser = user;
+			loggedUser = userService.getUserByUsername(user.getUsername());
+			
+			model.addAttribute("user" , loggedUser);
 			return "redirect:/";
 		}
 		else
 			return "login";
+	}
+	
+	@GetMapping("/myTeams")
+	public String getMyTeamsPage(@PathVariable(value="id") int id, Model model, RedirectAttributes ra) {
+		
+		try {
+			model.addAttribute("user", loggedUser);
+			return "myTeams";
+		}
+		catch (RuntimeException e) {
+			ra.addFlashAttribute(e.getMessage());
+			return "redirect:/";
+		}
 	}
 }

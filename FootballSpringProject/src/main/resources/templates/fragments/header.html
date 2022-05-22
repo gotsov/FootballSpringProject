@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<meta charset="UTF-8">
+
+</head>
+<body>
+	<div th:fragment="header" style="background-color: #B2ECE1;">
+		<!-- <div id="container" style="float: right;">
+			<!-- <button th:if="${user.id == 0}" id="button1" onclick="window.location.href='/login'">Login</button>  
+			<!-- <button th:if="${user.id == 0}" id="button2" onclick="window.location.href='/registerUser'">Register</button>  
+			<h1 sec:authentication="principal.authorities" style="display: inline-block; margin: 10px"></h1>
+            
+		</div> -->
+		
+		<div>			
+			<form action="#" th:action="@{/}" method="get" style="width: 100px; display: inline-block;">					
+                <button type="submit" >Home</button>
+            </form>
+            
+            <form action="#" th:action="@{/teams}" method="get" style="width: 100px; display: inline-block;">					
+                <button type="submit" >Teams</button>
+            </form>
+			
+			<form action="#" th:action="@{/users}" method="get" style="width: 100px; display: inline-block;">					
+                <button type="submit" >Users</button>
+            </form>
+            
+            <form action="#" th:action="@{/myTeams}" method="get" style="width: 100px; display: inline-block;">					
+                <button type="submit" style="background-color: #0CA4A5;">My Teams</button>
+            </form>
+            
+			<form action="#" th:action="@{/logout}" method="post" style="width: 100px; display: inline-block; float: right;">					
+                <button type="submit" style="width:auto;">Logout</button>
+            </form>
+		</div>
+	</div>
+  </body>
+</html>
